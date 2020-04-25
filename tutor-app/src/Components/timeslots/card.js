@@ -14,6 +14,7 @@ class Cards extends Component {
             <div className="container-fluid d-flex justify-content-center" style={{height:'100%'}}>
                 
                 <div className="row">
+
                 
                     <ul>
                     <div className="weekDay">Monday</div>
@@ -49,12 +50,10 @@ class Cards extends Component {
                         return <li key={index}><Card tutorName={value[0]} time={value[1]} /></li>
                     })}
                     </ul>
+                    
                 </div>
             </div>
         )
     }
-
-
-
 }
 export default Cards;

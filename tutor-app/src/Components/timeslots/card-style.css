@@ -1,10 +1,5 @@
-body{
-    background: linear-gradient(#ee0000,#ffff, #e5e5e5) no-repeat ;
-    border: solid black 1px;
-}
 .card{
     width: 20rem;
-
 }
 .card-body:hover{
     box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.253) !important;
