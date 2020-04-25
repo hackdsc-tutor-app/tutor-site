@@ -6,11 +6,11 @@ class Cards extends Component {
         return (
             <div className="container-fluid d-flex justify-content-center">
                 <div className="row">
-                    <div className='col-md-4'>
-                        <Card />
-                    </div>
-                    <div className='col-md-4'><Card /> </div>
-                    <div className='col-md-4'> <Card /></div>
+                    <div className='col-xs-12 col-md-4 col-lg-2'><Card /></div>
+                    <div className='col-xs-12 col-md-4 col-lg-2'><Card /></div>
+                    <div className='col-xs-12 col-md-4 col-lg-2'><Card /></div>
+                    <div className='col-xs-12 col-md-4 col-lg-2'><Card /></div>
+                    <div className='col-xs-12 col-md-4 col-lg-2'><Card /></div>
                 </div>
             </div>
         )
