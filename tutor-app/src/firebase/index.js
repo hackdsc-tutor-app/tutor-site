@@ -21,9 +21,5 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
 
-export {
-    firebase as default
-}
+export default firebase
