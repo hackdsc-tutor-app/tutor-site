@@ -12,6 +12,9 @@ export default class ChannelForm extends Component {
         let { name, value } = e.target;
         this.setState({ [name]: value });
       };
+      selectChannel = channel => {
+        this.setState({ channel });
+      };
       // ChannelForm.js
         onSubmit = e => {
             e.preventDefault();

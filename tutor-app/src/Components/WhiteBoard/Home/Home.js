@@ -22,6 +22,7 @@ function HomePage() {
     const [circles, setCircles] = useState([]);
     const [images, setImages] = useState([]);
     const [selectedId, selectShape] = useState(null);
+    const [channel, setChannel] = useState(null);
     const [shapes, setShapes] = useState([]);
     const [, updateState] = React.useState();
     const stageEl = React.createRef();
@@ -137,9 +138,12 @@ function HomePage() {
             forceUpdate();
         }
     });
+    function selectChannel (channel){
+        setChannel({ channel });
+      };
     return (
         <div className="home-page">
-            <ChannelForm />
+            <ChannelForm selectChannel={selectChannel}/>
             <h1>Whiteboard</h1>
             <Row>
                 <Col style={{width:'1000px'}}>

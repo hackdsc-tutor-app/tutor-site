@@ -8,7 +8,7 @@ export const addLine = (stage, layer, mode = "brush") => {
     let lineArray = []
     function writeUserData(entireArray,lineArray) {
         entireArray.push(lineArray)
-        firebase.database().ref('hackdsc-tutor-app-b6bbc'+'fau/' +'groups/'+'nickTest1/').set({
+        firebase.database().ref('fau/' +'groups/'+'nickTest2/').set({
           line2:entireArray
         });
         console.log('done');
@@ -31,6 +31,7 @@ export const addLine = (stage, layer, mode = "brush") => {
 
         // console.log(layer['children'][0]['attrs']);
         let lineArray=  layer['children'][0]['attrs']['points'];
+        writeUserData(entireArray,lineArray)
         // console.log(Array);
         
 
@@ -39,7 +40,7 @@ export const addLine = (stage, layer, mode = "brush") => {
         
     });
     stage.on("mouseup touchend", function () {
-        writeUserData(entireArray,lineArray)
+        
         isPaint = false;
     });
     stage.on("mousemove touchmove", function () {
