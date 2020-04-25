@@ -4,7 +4,9 @@ import HomePage from "./Components/Home/Home";
 import TopBar from "./Components/TopBar/TopBar";
 import { createBrowserHistory as createHistory } from "history";
 import "./App.css";
-import UserAuth from './Components/UserAuth/SignIn'
+import 'materialize-css/dist/css/materialize.min.css';
+
+import SignIn from './Components/UserAuth/SignIn'
 const history = createHistory();
 function App() {
   return (
@@ -12,7 +14,7 @@ function App() {
       <Router history={history}>
         <TopBar />
         <Route path="/" exact component={HomePage} />
-        <Route path="/UserAuth" exact component={UserAuth} />
+        <Route path="/SignIn" exact component={SignIn} />
       </Router>
     </div>
   );

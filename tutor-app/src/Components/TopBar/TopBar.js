@@ -1,28 +1,31 @@
 
 import React from "react";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import UserAuth from '../UserAuth/SignIn'
-// import "./TopBar.css";
-import { withRouter } from "react-router-dom";
+import { withRouter,Link } from "react-router-dom";
+import SignInSignOutBtn from '../UserAuth/SignIn'
+
 function TopBar({ location }) {
     const { pathname } = location;
     return (
-        <Navbar bg="primary" expand="lg" variant="dark">
-            <Navbar.Brand href="#home">React Canvas App</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="mr-auto">
-                    <Nav.Link href="/" active={pathname == "/"}>
-                        Home
-          </Nav.Link>
-                    <Nav.Link href="/" active={pathname == "/"}>
-                        Sign Up
-          </Nav.Link>
-                </Nav>
-            </Navbar.Collapse>
-        </Navbar>
+        <nav>
+            <div className="nav-wrapper">
+                <a href="#" className="brand-logo">
+                    Logo
+                </a>
+                <ul id="nav-mobile" className="right hide-on-med-and-down">
+                    <li>
+                        <Link to="/UserAuth" >
+                            Home
+                        </Link>
+                    </li>
+                    <li>
+                        <SignInSignOutBtn/>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
     );
 }
 export default withRouter(TopBar);
+
+

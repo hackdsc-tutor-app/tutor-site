@@ -1,66 +1,62 @@
 import React, { useState, useEffect, Component } from 'react'
 import firebase from '../../firebase/index'
-import { Redirect } from "react-router-dom";
-import { Link } from 'react-router-dom';
-import Home from '../Home/Home'
-import { withRouter } from 'react-router-dom';
-import 'materialize-css/dist/css/materialize.min.css';
 import M from "materialize-css";
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
 
+const provider = new firebase.auth.GoogleAuthProvider();
 
-
-const SignIn = props => {
-    function SignInUser(event) {
-        event.preventDefault();
-        var provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithPopup(provider).then(() => {
-            console.log('yese');
-
-            // redirect user to the home page
-            setTimeout(() => {
-                props.history.push('SignInAnimation')
-            }, 50)
-
-        }).catch(function (error) {
-
-            // Handle Errors here.
-            console.log(error.message);
-
-        });
-
+class SignInSignOutBtn extends Component {
+    constructor() {
+        super();
+        this.state = {
+            currentItem: '',
+            username: '',
+            items: [],
+            user: null // <-- add this line
+        }
+        this.login = this.login.bind(this); // <-- add this line
+        this.logout = this.logout.bind(this); // <-- add this line
     }
-    return (
-
-        <React.Fragment>
-
-            <div style={{ marginTop: '10%' }} className="container grey lighten-3 z-depth-1">
-                <Form>
-                    <Form.Group controlId="formBasicEmail">
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" id="email" required />
-                        <Form.Text className="text-muted">
-                            We'll never share your email with anyone else.
-                    </Form.Text>
-                    </Form.Group>
-
-                    <Form.Group controlId="formBasicPassword">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" id="password" required />
-                    </Form.Group>
-                    <Link to="SignUp">
-                        <button className="btn z-depth-1 buttonStyle">Sign Up</button>
-                    </Link>
-                    {/* Use Button Instead of button if it does not work */}
-                    <button className="btn z-depth-1 buttonStyle" onClick={SignInUser}>
-                        Sign In
-                    </button>
-                </Form>
-            </div>
-
-
-        </React.Fragment>
-    );
+    handleChange(e) {
+        /* ... */
+    }
+    logout() {
+        firebase.auth().signOut()
+            .then(() => {
+                this.setState({
+                    user: null
+                });
+            });
+    }
+    login() {
+        firebase.auth().signInWithPopup(provider)
+            .then((result) => {
+                const user = result.user;
+                this.setState({
+                    user
+                });
+            });
+    }
+    componentDidMount() {
+        M.AutoInit();
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                this.setState({ user });
+            }
+        });
+    }
+    render() {
+        return (
+            
+                
+                <div className="wrapper">
+                    {this.state.user ?
+                        <button onClick={this.logout}>Logout</button>
+                        :
+                        <button onClick={this.login}>Log In</button>
+                    }
+                </div>
+           
+        );
+    }
 }
-export default SignIn;
+export default SignInSignOutBtn
