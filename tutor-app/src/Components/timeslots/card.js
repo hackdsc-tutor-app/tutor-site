@@ -1,28 +1,22 @@
-import React from "react";
-import { withRouter, Link } from "react-router-dom";
-import SignInSignOutBtn from '../UserAuth/SignIn'
-import './card-style.css';
-const Card = props => {
-    return (
-        <div className="card-body tex-dark">
-            <h4 className="card-title">TA's Name</h4>
-            <p className="Card-text text-secondary">time</p>
-            <a href="#" className="btn btn-outline-success">Go to session</a>
-        </div>
-    );
+import React, { Component } from 'react'
+import Card from './cardUI';
+
+class Cards extends Component {
+    render() {
+        return (
+            <div className="container-fluid d-flex justify-content-center">
+                <div className="row">
+                    <div className='col-md-4'>
+                        <Card />
+                    </div>
+                    <div className='col-md-4'><Card /> </div>
+                    <div className='col-md-4'> <Card /></div>
+                </div>
+            </div>
+        )
+    }
+
+
 
 }
-export default Card;
-
-// function Card() {
-//     return (
-//         <React.Fragment>
-//             <div>
-//                 test
-
-//             </div>
-//         </React.Fragment>
-//     );
-// }
-// export default Card;
-//testing
+export default Cards;
