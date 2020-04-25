@@ -1,7 +1,6 @@
 
 import React from "react";
 import { withRouter,Link } from "react-router-dom";
-import SignInSignOutBtn from '../UserAuth/SignIn'
 
 function TopBar({ location }) {
     const { pathname } = location;
@@ -18,7 +17,9 @@ function TopBar({ location }) {
                         </Link>
                     </li>
                     <li>
-                        <SignInSignOutBtn/>
+                        <Link to="/SignIn">
+                            Sign In
+                        </Link>
                     </li>
                 </ul>
             </div>

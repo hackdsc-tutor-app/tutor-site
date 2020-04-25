@@ -9,6 +9,8 @@ import { addLine } from "../line/line";
 import { addTextNode } from "../TextNode/TextNode";
 import Image from "../Image/Image";
 import firebase from '../../firebase/index'
+import ChannelForm from '../Agora/ChannelForm'
+import Call from '../Agora/Call'
 
 
 const uuidv1 = require("uuid/v1");
@@ -134,101 +136,109 @@ function HomePage() {
     });
     return (
         <div className="home-page">
+            <ChannelForm />
             <h1>Whiteboard</h1>
-            <ButtonGroup>
-                <Button variant="secondary" onClick={addRectangle}>
-                    Rectangle
-        </Button>
-                <Button variant="secondary" onClick={addCircle}>
-                    Circle
-        </Button>
-                <Button variant="secondary" onClick={drawLine}>
-                    Line
-        </Button>
-                <Button variant="secondary" onClick={eraseLine}>
-                    Erase
-        </Button>
-                <Button variant="secondary" onClick={drawText}>
-                    Text
-        </Button>
-                <Button variant="secondary" onClick={drawImage}>
-                    Image
-        </Button>
-                <Button variant="secondary" onClick={undo}>
-                    Undo
-        </Button>
-            </ButtonGroup>
-            <input
-                style={{ display: "none" }}
-                type="file"
-                ref={fileUploadEl}
-                onChange={fileChange}
-            />
-            <Stage
-                width={window.innerWidth * 0.9}
-                height={window.innerHeight - 150}
-                ref={stageEl}
-                onMouseDown={e => {
-                    // deselect when clicked on empty area
-                    const clickedOnEmpty = e.target === e.target.getStage();
-                    if (clickedOnEmpty) {
-                        selectShape(null);
-                    }
-                }}
-            >
-                <Layer ref={layerEl}>
-                    {rectangles.map((rect, i) => {
-                        return (
-                            <Rectangle
-                                key={i}
-                                shapeProps={rect}
-                                isSelected={rect.id === selectedId}
-                                onSelect={() => {
-                                    selectShape(rect.id);
-                                }}
-                                onChange={newAttrs => {
-                                    const rects = rectangles.slice();
-                                    rects[i] = newAttrs;
-                                    setRectangles(rects);
-                                }}
-                            />
-                        );
-                    })}
-                    {circles.map((circle, i) => {
-                        return (
-                            <Circle
-                                key={i}
-                                shapeProps={circle}
-                                isSelected={circle.id === selectedId}
-                                onSelect={() => {
-                                    selectShape(circle.id);
-                                }}
-                                onChange={newAttrs => {
-                                    const circs = circles.slice();
-                                    circs[i] = newAttrs;
-                                    setCircles(circs);
-                                }}
-                            />
-                        );
-                    })}
-                    {images.map((image, i) => {
-                        return (
-                            <Image
-                                key={i}
-                                imageUrl={image.content}
-                                isSelected={image.id === selectedId}
-                                onSelect={() => {
-                                    selectShape(image.id);
-                                }}
-                                onChange={newAttrs => {
-                                    const imgs = images.slice();
-                                    imgs[i] = newAttrs;
-                                }}
-                            />
-                        );
-                    })}
-                </Layer>
-            </Stage>
+            <div style={{flex:1}}>
+                <div>
+                    <ButtonGroup>
+                        <Button variant="secondary" onClick={addRectangle}>
+                            Rectangle
+                </Button>
+                        <Button variant="secondary" onClick={addCircle}>
+                            Circle
+                </Button>
+                        <Button variant="secondary" onClick={drawLine}>
+                            Line
+                </Button>
+                        <Button variant="secondary" onClick={eraseLine}>
+                            Erase
+                </Button>
+                        <Button variant="secondary" onClick={drawText}>
+                            Text
+                </Button>
+                        <Button variant="secondary" onClick={drawImage}>
+                            Image
+                </Button>
+                        <Button variant="secondary" onClick={undo}>
+                            Undo
+                </Button>
+                    </ButtonGroup>
+                    <input
+                        style={{ display: "none" }}
+                        type="file"
+                        ref={fileUploadEl}
+                        onChange={fileChange}
+                    />
+                    <Stage
+                        width={window.innerWidth * 0.5}
+                        height={window.innerHeight - 150}
+                        ref={stageEl}
+                        onMouseDown={e => {
+                            // deselect when clicked on empty area
+                            const clickedOnEmpty = e.target === e.target.getStage();
+                            if (clickedOnEmpty) {
+                                selectShape(null);
+                            }
+                        }}
+                    >
+                        <Layer ref={layerEl}>
+                            {rectangles.map((rect, i) => {
+                                return (
+                                    <Rectangle
+                                        key={i}
+                                        shapeProps={rect}
+                                        isSelected={rect.id === selectedId}
+                                        onSelect={() => {
+                                            selectShape(rect.id);
+                                        }}
+                                        onChange={newAttrs => {
+                                            const rects = rectangles.slice();
+                                            rects[i] = newAttrs;
+                                            setRectangles(rects);
+                                        }}
+                                    />
+                                );
+                            })}
+                            {circles.map((circle, i) => {
+                                return (
+                                    <Circle
+                                        key={i}
+                                        shapeProps={circle}
+                                        isSelected={circle.id === selectedId}
+                                        onSelect={() => {
+                                            selectShape(circle.id);
+                                        }}
+                                        onChange={newAttrs => {
+                                            const circs = circles.slice();
+                                            circs[i] = newAttrs;
+                                            setCircles(circs);
+                                        }}
+                                    />
+                                );
+                            })}
+                            {images.map((image, i) => {
+                                return (
+                                    <Image
+                                        key={i}
+                                        imageUrl={image.content}
+                                        isSelected={image.id === selectedId}
+                                        onSelect={() => {
+                                            selectShape(image.id);
+                                        }}
+                                        onChange={newAttrs => {
+                                            const imgs = images.slice();
+                                            imgs[i] = newAttrs;
+                                        }}
+                                    />
+                                );
+                            })}
+                        </Layer>
+                    </Stage>
+                </div>
+                <Call />
+            </div>
+
+
         </div>
     );
 }
