@@ -1,19 +1,19 @@
 import Konva from "konva";
-import firebase from '../../../firebase/index'
+import LiveUpdates from "../LiveUpdates/LiveUpdates"
 export const addLine = (stage, layer, mode = "brush") => {
     let isPaint = false;
     let lastLine;
-    var database = firebase.database();
+    // var database = firebase.database();
     let entireArray = []
     let lineArray = []
-    function writeUserData(entireArray, lineArray) {
-        entireArray.push(lineArray)
-        firebase.database().ref('fau/' + 'groups/' + 'nickTest2/').set({
-            line2: entireArray
-        });
-        console.log('done');
+    // function writeUserData(entireArray, lineArray) {
+    //     entireArray.push(lineArray)
+    //     firebase.database().ref('fau/' + 'groups/' + 'nickTest2/').set({
+    //         line2: entireArray
+    //     });
+    //     console.log('done');
 
-    }
+    // }
 
     stage.on("mousedown touchstart", function (e) {
         isPaint = true;
@@ -31,7 +31,7 @@ export const addLine = (stage, layer, mode = "brush") => {
 
         // console.log(layer['children'][0]['attrs']);
         let lineArray = layer['children'][0]['attrs']['points'];
-        writeUserData(entireArray, lineArray)
+        // writeUserData(entireArray, lineArray)
         // console.log(Array);
 
 
@@ -41,6 +41,8 @@ export const addLine = (stage, layer, mode = "brush") => {
     });
     stage.on("mouseup touchend", function () {
 
+
+        // layer.batchDraw();
         isPaint = false;
     });
     stage.on("mousemove touchmove", function () {
@@ -51,6 +53,14 @@ export const addLine = (stage, layer, mode = "brush") => {
         let newPoints = lastLine.points().concat([pos.x, pos.y]);
         lastLine.points(newPoints);
         layer.batchDraw();
-        console.log(layer.getCanvas().points);
+        // layer.getStage().getLayers.each(sLayer => {
+        //     console.log(sLayer.toJSON());
+        // });
+        // console.log(layer.toJSON());
+        // console.log(layer.getStage())
+        // console.log(lastLine.points());
+        // console.log(pos)
+
+
     });
 };
