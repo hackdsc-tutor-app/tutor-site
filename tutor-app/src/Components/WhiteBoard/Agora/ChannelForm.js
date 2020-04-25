@@ -1,32 +1,25 @@
-// ChannelForm.js
 import React, { Component } from "react";
 
 export default class ChannelForm extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          channel: ""
-        };
-      }
-      onChange = e => {
-        let { name, value } = e.target;
-        this.setState({ [name]: value });
-      };
-      selectChannel = channel => {
-        this.setState({ channel });
-      };
-      // ChannelForm.js
-        onSubmit = e => {
-            e.preventDefault();
-            console.log("Submiting ", this.state.channel);
-            this.props.selectChannel(this.state.channel);
-            this.setState({ channel: "" });
-        };
-        
+  constructor(props) {
+    super(props);
+    this.state = {
+      channel: ""
+    };
+  }
+  onChange = e => {
+    let { name, value } = e.target;
+    this.setState({ [name]: value });
+  };
+  onSubmit = e => {
+    e.preventDefault();
+    console.log("Submiting ", this.state.channel);
+    this.setState({ channel: "" });
+  };
   render() {
     return (
-        <div>
-        <form onSubmit={this.onSubmit}>
+      <div>
+        <form>
           <label>Channel Name</label>
           <input
             placeholder="Channel Name"

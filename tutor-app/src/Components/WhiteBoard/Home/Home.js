@@ -372,10 +372,15 @@ function HomePage() {
                     {/* </Layer>
                     </Stage> */}
                 </Col>
-                <Col>
+                {/* <Col>
                     <Call />
+<<<<<<< HEAD
+                </Col> */}
+            </Row>
+=======
                 </Col>
             </Row >
+>>>>>>> 7566dfca46371edf43734cc55e762c9e9a703ad8
 
         </div >
     );
