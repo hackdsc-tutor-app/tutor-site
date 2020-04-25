@@ -9,6 +9,7 @@
     "agora-rtc-sdk": "^3.0.2",
     "bootstrap": "^4.4.1",
     "firebase": "^7.14.2",
+    "immutable": "^4.0.0-rc.12",
     "konva": "^5.0.2",
     "materialize-css": "^1.0.0",
     "react": "^16.13.1",
