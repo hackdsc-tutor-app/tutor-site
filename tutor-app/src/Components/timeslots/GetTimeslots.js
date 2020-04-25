@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter, Link } from "react-router-dom";
 import firebase from '../../firebase/index';
 
-const timeslot_firebase = () => {
+const GetTimeslots = () => {
 
     function getAllAvailableTimeslots() {
         var timeslots = {};
@@ -39,6 +39,5 @@ const timeslot_firebase = () => {
         });
     }
     return getAllAvailableTimeslots();
-
 
 }
