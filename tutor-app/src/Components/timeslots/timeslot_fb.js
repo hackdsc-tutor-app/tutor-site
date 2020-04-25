@@ -29,11 +29,16 @@ const timeslot_firebase = () => {
 
                 timeslots[day][snapshot.id] = snapData;
                 timeslots[day][snapshot.id].id = snapshot.id;
+
+                //converting timestamps to date objects:
+                timeslots[day][snapshot.id].end_time = snapData.end_time.toDate()
+                timeslots[day][snapshot.id].start_time = snapData.start_time.toDate()
             })
             return timeslots;
 
         });
     }
     return getAllAvailableTimeslots();
+
 
 }
