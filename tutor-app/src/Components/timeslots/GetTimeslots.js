@@ -2,9 +2,10 @@ import React from 'react';
 import { withRouter, Link } from "react-router-dom";
 import firebase from '../../firebase/index';
 
-const GetTimeslots = () => {
+export const GetTimeslots = () => {
 
-    function getAllAvailableTimeslots() {
+    function getAllAvailableTimeslots() 
+    {
         var timeslots = {};
         /* var ts = {
             0: [], //sunday
@@ -38,6 +39,11 @@ const GetTimeslots = () => {
 
         });
     }
-    return getAllAvailableTimeslots();
+    getAllAvailableTimeslots();
+    return(
+        <div>
+            hello
+        </div>
+    )
 
 }

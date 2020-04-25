@@ -1,12 +1,12 @@
 import React, {Component} from "react";
 import { Router, Route, Link } from "react-router-dom";
-import HomePage from "./Components/Home/Home";
+import HomePage from "./Components/WhiteBoard/Home/Home";
 import TopBar from "./Components/TopBar/TopBar";
 import { createBrowserHistory as createHistory } from "history";
 import "./App.css";
 import 'materialize-css/dist/css/materialize.min.css';
-import ChannelForm from './Components/Agora/ChannelForm' 
-import Call from './Components/Agora/Call'
+import ChannelForm from './Components/WhiteBoard/Agora/ChannelForm' 
+import Call from './Components/WhiteBoard/Agora/Call'
 import SignIn from './Components/UserAuth/SignIn'
 const history = createHistory();
 

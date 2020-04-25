@@ -11,7 +11,7 @@ import Circle from "../Circle/Circle";
 import { addLine } from "../line/line";
 import { addTextNode } from "../TextNode/TextNode";
 import Image from "../Image/Image";
-import firebase from '../../firebase/index'
+import firebase from '../../../firebase/index'
 import ChannelForm from '../Agora/ChannelForm'
 import Call from '../Agora/Call'
 
