@@ -8,6 +8,7 @@ import 'materialize-css/dist/css/materialize.min.css';
 import ChannelForm from './Components/WhiteBoard/Agora/ChannelForm' 
 import Call from './Components/WhiteBoard/Agora/Call'
 import SignIn from './Components/UserAuth/SignIn'
+import Card from './Components/timeslots/card'
 const history = createHistory();
 
 class App extends Component {
@@ -31,6 +32,7 @@ class App extends Component {
          <Route path="/SignIn" exact component={SignIn} />
          <Route path="/ChannelForm" exact component={ChannelForm} />
          <Route path="/Call" exact component={Call} />
+         <Route path="/Card" exact component={Card} />
        </Router> 
        </div>
     );

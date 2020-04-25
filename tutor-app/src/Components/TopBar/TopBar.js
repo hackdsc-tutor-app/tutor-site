@@ -1,5 +1,8 @@
 
 import React from "react";
+import Card from '../../Components/TopBar/TopBar'
+
+
 import { withRouter,Link } from "react-router-dom";
 
 function TopBar({ location }) {
@@ -19,6 +22,11 @@ function TopBar({ location }) {
                     <li>
                         <Link to="/SignIn">
                             Sign In
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/Card">
+                            Card
                         </Link>
                     </li>
                 </ul>

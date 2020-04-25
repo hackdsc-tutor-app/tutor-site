@@ -7,7 +7,7 @@ function Card (){
     return (
         <React.Fragment>
             <div>
-                
+               test 
             </div>
         </React.Fragment>
     );
