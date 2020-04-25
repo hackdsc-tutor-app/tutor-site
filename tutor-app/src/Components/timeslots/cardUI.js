@@ -5,9 +5,9 @@ import './card-style.css';
 const Card = props => {
     return (
         <div className="card-body tex-dark">
-            <h4 className="card-title">TA's Name</h4>
-            <p className="Card-text text-secondary">time</p>
-            <a href="#" className="btn btn-outline-success">Go to session</a>
+            <h3 className="card-title">Monday</h3>
+            <h4 className="Card-text text-secondary">Pablo Picasso</h4>
+            <a href="#" className="btn btn-outline-success btn-tutor-session">Go to session</a>
         </div>
     );
 
