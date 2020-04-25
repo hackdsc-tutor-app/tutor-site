@@ -8,7 +8,7 @@ import Circle from "../Circle/Circle";
 import { addLine } from "../line/line";
 import { addTextNode } from "../TextNode/TextNode";
 import Image from "../Image/Image";
-import firebase from '../../../firebase/index';
+import firebase from '../../firebase/index'
 
 
 const uuidv1 = require("uuid/v1");

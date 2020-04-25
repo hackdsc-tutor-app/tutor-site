@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Component } from 'react'
-import firebase from '../../fi'
+import firebase from '../../firebase/index'
 import { Redirect } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import Home from '../Home/Home'
