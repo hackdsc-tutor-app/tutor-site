@@ -177,7 +177,6 @@ function HomePage() {
       };
     return (
         <div className="home-page">
-            <ChannelForm selectChannel={selectChannel}/>
             <h1>Whiteboard</h1>
             <Row>
                 <Col style={{ width: '1000px' }}>
@@ -276,9 +275,9 @@ function HomePage() {
                         </Layer>
                     </Stage>
                 </Col>
-                <Col>
+                {/* <Col>
                     <Call />
-                </Col>
+                </Col> */}
             </Row>
 
         </div>
