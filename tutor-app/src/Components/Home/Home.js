@@ -1,6 +1,9 @@
 import React, { useState, useRef } from "react";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Button from "react-bootstrap/Button";
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+
 // import "./HomePage.css";
 import { Stage, Layer } from "react-konva";
 import Rectangle from "../Rectangle/Rectangle";
@@ -138,40 +141,40 @@ function HomePage() {
         <div className="home-page">
             <ChannelForm />
             <h1>Whiteboard</h1>
-            <div style={{flex:1}}>
-                <div>
+            <Row>
+                <Col style={{width:'1000px'}}>
                     <ButtonGroup>
                         <Button variant="secondary" onClick={addRectangle}>
                             Rectangle
-                </Button>
+                        </Button>
                         <Button variant="secondary" onClick={addCircle}>
                             Circle
-                </Button>
+                        </Button>
                         <Button variant="secondary" onClick={drawLine}>
                             Line
-                </Button>
+                        </Button>
                         <Button variant="secondary" onClick={eraseLine}>
                             Erase
-                </Button>
+                        </Button>
                         <Button variant="secondary" onClick={drawText}>
                             Text
-                </Button>
+                        </Button>
                         <Button variant="secondary" onClick={drawImage}>
                             Image
-                </Button>
+                        </Button>
                         <Button variant="secondary" onClick={undo}>
                             Undo
-                </Button>
+                        </Button>
                     </ButtonGroup>
-                    <input
+                    <input  
                         style={{ display: "none" }}
                         type="file"
                         ref={fileUploadEl}
                         onChange={fileChange}
                     />
                     <Stage
-                        width={window.innerWidth * 0.5}
-                        height={window.innerHeight - 150}
+                        width={window.innerWidth * 0.8}
+                        height={window.innerHeight - 180}
                         ref={stageEl}
                         onMouseDown={e => {
                             // deselect when clicked on empty area
@@ -234,10 +237,11 @@ function HomePage() {
                             })}
                         </Layer>
                     </Stage>
-                </div>
-                <Call />
-            </div>
-
+                </Col>
+                <Col>
+                    <Call />
+                </Col>
+            </Row>
 
         </div>
     );

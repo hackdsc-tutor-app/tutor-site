@@ -147,7 +147,7 @@ export default class Call extends Component {
   render() {
     return (
       <div>
-        <div id="agora_local" style={{ width: "400px", height: "400px" }} />
+        <div id="agora_local" style={{ width: "200px", height: "200px" }} />
         {Object.keys(this.state.remoteStreams).map(key => {
           let stream = this.state.remoteStreams[key];
           let streamId = stream.getId();
