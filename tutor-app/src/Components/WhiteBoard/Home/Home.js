@@ -22,21 +22,33 @@ import "./whiteboard.css";
 import { LiveUpdates } from "../LiveUpdates/LiveUpdates";
 import { UserContext } from "../../../providers/UserProvider";
 
+import { useParams } from 'react-router-dom';
+
+
+var whiteboard_id;
 
 class DrawArea extends React.Component {
+
     constructor() {
+        // let { wbId } = useParams();
+
         super();
 
+        this.wbId = whiteboard_id;
+        // this.wbId = "";
+        console.log(this.wbId);
         this.state = {
             isDrawing: false,
             lines: Immutable.List(),
-            points: []
+            points: [],
+            previous: []
         }
 
         this.handleMouseDown = this.handleMouseDown.bind(this);
         this.handleMouseMove = this.handleMouseMove.bind(this);
         this.handleMouseUp = this.handleMouseUp.bind(this);
         this.handleUpdates = this.handleUpdates.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
 
 
     }
@@ -47,11 +59,11 @@ class DrawArea extends React.Component {
         }
 
         const point = this.relativeCoordinatesForEvent(mouseEvent);
-
         this.setState(prevState => {
             // LiveUpdates(point);
             return {
                 // lines: prevState.lines.push(Immutable.List([point])),
+                previous: point,
                 isDrawing: true,
             };
         });
@@ -69,7 +81,19 @@ class DrawArea extends React.Component {
         // console.log(this.state.lines);
 
         // LiveUpdates(this.state.lines.updateIn([this.state.lines.size - 1], line => line.push(point)));
-        LiveUpdates(point);
+        if (this.state.previous == []) {
+            this.setState(() => {
+                return {
+                    previous: point
+                }
+            })
+        }
+        LiveUpdates(this.wbId, [point, this.state.previous]);
+        this.setState(() => {
+            return {
+                previous: point
+            }
+        })
 
 
         // this.setState(prevState => {
@@ -93,15 +117,25 @@ class DrawArea extends React.Component {
         // lines: prevState.lines.push(Immutable.List([point])),
         // console.log("::" + Immutable.List(lines))
         this.setState(prevState => {
+            console.log(coordsArray)
             return {
-                lines: prevState.points.push(coordsArray)
+                points: prevState.points.push(coordsArray)
             }
         })
     }
 
+    handleDelete() {
+        this.setState(() => {
+            return {
+                point: []
+            }
+        })
+    }
+
+
     componentDidMount() {
         document.addEventListener("mouseup", this.handleMouseUp);
-        LiveUpdates(null, this.handleUpdates);
+        LiveUpdates(this.wbId, null, this.handleUpdates, this.handleDelete);
     }
     componentWillUnmount() {
         document.removeEventListener("mouseup", this.handleMouseUp);
@@ -154,6 +188,8 @@ const DrawingLine = function ({ line }) {
 
 const uuidv1 = require("uuid/v1");
 function HomePage() {
+    let { wbId } = useParams();
+    whiteboard_id = wbId;
     const [rectangles, setRectangles] = useState([]);
     const [circles, setCircles] = useState([]);
     const [images, setImages] = useState([]);
@@ -165,26 +201,21 @@ function HomePage() {
     const canvasEl = React.createRef();
     const layerEl = React.createRef();
     const fileUploadEl = React.createRef();
+    const DrawingAreaThing = React.createRef();
+
     const getRandomInt = max => {
         return Math.floor(Math.random() * Math.floor(max));
     };
 
-    const testing = (stage, mode = "brush") => {
-        const pos = { x: 718, y: 171.8125 };
-        var tempPoints = [368.75, 188.8125, 368.75, 188.8125, 368.75, 188.8125, 370.75, 188.8125, 371.75, 188.8125, 372.75, 188.8125, 375.75, 190.8125, 386.75, 198.8125, 389.75, 201.8125, 394.75, 204.8125, 399.75, 208.8125, 402.75, 211.8125, 408.75, 215.8125, 410.75, 217.8125, 418.75, 222.8125, 420.75, 224.8125, 425.75, 226.8125, 428.75, 228.8125, 432.75, 230.8125, 438.75, 232.8125, 440.75, 233.8125, 443.75, 234.8125, 446.75, 235.8125, 448.75, 235.8125, 450.75, 236.8125, 452.75, 236.8125, 452.75, 236.8125, 454.75, 237.8125, 454.75, 237.8125, 454.75, 237.8125, 455.75, 237.8125, 455.75, 237.8125, 455.75, 237.8125, 455.75, 237.8125]
-
-        var liveLine = new Konva.Line({
-            stroke: mode == "brush" ? "red" : "white",
-            strokeWidth: mode == "brush" ? 5 : 20,
-            globalCompositeOperation:
-                mode === "brush" ? "source-over" : "destination-out",
-            points: [pos.x, pos.y],
-            draggable: mode == "brush",
-        });
-        liveLine.points(tempPoints);
-        layerEl.current.batchDraw();
-        // console.log(stageEl.children)
-        forceUpdate();
+    // const clearWhiteboard = () => {
+    //     DrawingAreaThing.clear();
+    // }
+    const clearWhiteboard = () => {
+        const functions = firebase.functions();
+        var clearWB = functions.httpsCallable('clearWhiteboard');
+        clearWB({ whiteboard_id: whiteboard_id }).then((res) => {
+            console.log(res)
+        }).catch(err => console.error(err.message));
     }
 
 
@@ -209,9 +240,9 @@ function HomePage() {
             <h1>Whiteboard</h1>
             <Row className="drawAreaThingy">
                 <Col style={{ width: '70%' }}>
-                    {/* <ButtonGroup>
-                        
-                        <Button variant="primary" onClick={testing}>
+                    <ButtonGroup>
+
+                        {/* <Button variant="primary" onClick={testing}>
                             Testing
                         </Button>
                         <Button variant="secondary" onClick={drawLine}>
@@ -219,10 +250,13 @@ function HomePage() {
                         </Button>
                         <Button variant="secondary" onClick={eraseLine}>
                             Erase
+                        </Button> */}
+                        <Button variant="secondary" onClick={clearWhiteboard}>
+                            Clear
                         </Button>
-                    </ButtonGroup> */}
+                    </ButtonGroup>
 
-                    <DrawArea />
+                    <DrawArea ref={DrawingAreaThing} />
 
                 </Col>
                 {/* <Col>

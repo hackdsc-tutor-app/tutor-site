@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Router, Route, Link } from "react-router-dom";
+import { Router, Route, Link, useParams } from "react-router-dom";
 import HomePage from "./Components/WhiteBoard/Home/Home";
 import TopBar from "./Components/TopBar/TopBar";
 import { createBrowserHistory as createHistory } from "history";
@@ -33,7 +33,7 @@ class App extends Component {
         <Router history={history}>
           <UserProvider>
             <TopBar />
-            <Route path="/" exact component={HomePage} />
+            <Route path="/:wbId" exact component={HomePage} />
             <Route path="/SignIn" exact component={SignIn} />
             <Route path="/AddTimeslot" exact component={CreateTimeslot} />
             {/* <Route path="/ChannelForm" exact component={ChannelForm} /> */}

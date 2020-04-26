@@ -21,7 +21,12 @@ function TopBar({ location }) {
                 </a>
                 <ul id="nav-mobile" className="right hide-on-med-and-down">
                     <li>
-                        <Link to="/UserAuth" >
+                        <Link to="/AddTimeslot" >
+                            Add Timeslot
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/" >
                             Home
                         </Link>
                     </li>

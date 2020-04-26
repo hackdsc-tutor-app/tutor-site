@@ -17,6 +17,7 @@ class UserProvider extends Component {
         firebase.auth().onAuthStateChanged(userAuth => {
             this.setState({ user: userAuth });
             this.setState({ loading: false });
+            // UserContext = createContext({ user: userAuth });
             if (this.state.user == null) {
                 //not signed in
                 console.log('not signed in');
@@ -78,8 +79,12 @@ class UserProvider extends Component {
                 {this.state.user == null && this.state.loading == false &&
                     <div>
                         <TopBar />
-                        <Redirect from="/" to="/SignIn" />
-                        <Redirect from="/Card" to="/SignIn" />
+                        {/* <Redirect from="/" to="/SignIn" />
+                        <Redirect from="/Card" to="/SignIn" /> */}
+                        {/* <Redirect from="/AddTimeslot" to="/SignIn" /> */}
+                        <Route path="/" exact component={SignIn} />
+                        <Route path="/Card" exact component={SignIn} />
+                        <Route path="/AddTimeslot" exact component={SignIn} />
                         <Route path="/SignIn" exact component={SignIn} />
                     </div>
 
