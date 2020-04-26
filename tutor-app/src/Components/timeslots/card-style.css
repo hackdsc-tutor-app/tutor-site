@@ -4,12 +4,13 @@
 .dayBlock li {
     position: relative;
     margin: 10px;
+    width: 160px;
     background: ghostwhite;
     border-radius: 2px;
-  }
-  
-  .dayBlock li::before,
-  .dayBlock li::after {
+}
+
+.dayBlock li::before,
+.dayBlock li::after {
     content: '';
     position: absolute;
     bottom: 10px;
@@ -17,14 +18,17 @@
     height: 10px;
     box-shadow: 0 5px 14px rgba(0,0,0,.7);
     z-index: -1;
-  }
-  
-  .dayBlock li::before {
+}
+
+.dayBlock li::before {
     left: 15px;
     transform: skew(-5deg) rotate(-5deg);
-  }
-  
-  .dayBlock li::after {
+}
+
+.dayBlock li::after {
     right: 15px;
     transform: skew(5deg) rotate(5deg);
-  }
+}
+.timetable{
+    margin: 10px 0;
+}

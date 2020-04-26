@@ -20,7 +20,7 @@ class Cards extends Component {
                     <ul className="dayBlock">
                     <div className="weekDay">Monday</div>
                     {   elements.map((value, index) => {
-                        return <li key={index} ><Card tutorName={value[0]} time={value[1]} /></li>
+                        return <li key={index}><Card tutorName={value[0]} time={value[1]} /></li>
                     })}
                     </ul>
                     <ul className="dayBlock">

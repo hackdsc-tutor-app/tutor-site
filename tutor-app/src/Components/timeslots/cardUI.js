@@ -23,10 +23,11 @@ class Card extends Component {
                     {this.props.tutorName}
                 </MDBBtn>
                 <MDBCollapse id="basicCollapse" isOpen={this.state.collapseID}>
-                    <p>{this.props.time}</p>
+                    <p className="timetable">{this.props.time}</p>
                     <MDBBtn
                         href="#"
                         color="success"
+                        style={{ padding: "5px", margin: "5px 0", width: "90%" }}
                     >
                         Go to session
                     </MDBBtn>
