@@ -139,7 +139,7 @@ const Drawing = function ({ coords }) {
 }
 const DrawingLine = function ({ line }) {
     // console.log(JSON.stringify(line));
-    console.log(line);
+    // console.log(line);
 
     const pathData = "M " + line.map(p => {
         return `${p[0]} ${p[1]}`;

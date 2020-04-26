@@ -36,7 +36,7 @@ export const LiveUpdates = (coords = null, addPointFunction) => {
     if (coords == null) {
         LiveUpdates();
     } else {
-        query.add({ x: coords[0], y: coords[1] });
+        query.doc((Date.now()).toString()).set({ x: coords[0], y: coords[1] });
 
         //update data
 
