@@ -39,7 +39,7 @@ exports.addTimeslot = functions.https.onCall((data, context) => {
             start_time: start_date
         }
 
-        return firebase.collection("schools").doc("demo").collection("timeslots").add(insertObject).then((doc) => {
+        return firebase.collection("schools").doc("demo").collection("timeslots").doc().set(insertObject).then((doc) => {
             console.log(doc)
             return ({ success: true })
         }).catch(err => {
