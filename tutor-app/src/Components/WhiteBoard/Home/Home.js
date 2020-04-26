@@ -22,24 +22,19 @@ import { UserContext } from "../../../providers/UserProvider";
 
 import { useParams } from 'react-router-dom';
 
+import firebase from '../../../firebase/index'
 
 var whiteboard_id;
 
 class DrawArea extends React.Component {
-
     constructor() {
-        // let { wbId } = useParams();
-
         super();
 
         this.wbId = whiteboard_id;
-        // this.wbId = "";
-        console.log(this.wbId);
         this.state = {
             isDrawing: false,
             lines: Immutable.List(),
-            points: [],
-            previous: []
+            points: []
         }
 
         this.handleMouseDown = this.handleMouseDown.bind(this);
@@ -57,11 +52,11 @@ class DrawArea extends React.Component {
         }
 
         const point = this.relativeCoordinatesForEvent(mouseEvent);
+
         this.setState(prevState => {
             // LiveUpdates(point);
             return {
                 // lines: prevState.lines.push(Immutable.List([point])),
-                previous: point,
                 isDrawing: true,
             };
         });
@@ -79,19 +74,7 @@ class DrawArea extends React.Component {
         // console.log(this.state.lines);
 
         // LiveUpdates(this.state.lines.updateIn([this.state.lines.size - 1], line => line.push(point)));
-        if (this.state.previous == []) {
-            this.setState(() => {
-                return {
-                    previous: point
-                }
-            })
-        }
-        LiveUpdates(this.wbId, [point, this.state.previous]);
-        this.setState(() => {
-            return {
-                previous: point
-            }
-        })
+        LiveUpdates(point);
 
 
         // this.setState(prevState => {
@@ -115,9 +98,8 @@ class DrawArea extends React.Component {
         // lines: prevState.lines.push(Immutable.List([point])),
         // console.log("::" + Immutable.List(lines))
         this.setState(prevState => {
-            console.log(coordsArray)
             return {
-                points: prevState.points.push(coordsArray)
+                lines: prevState.points.push(coordsArray)
             }
         })
     }
@@ -133,7 +115,7 @@ class DrawArea extends React.Component {
 
     componentDidMount() {
         document.addEventListener("mouseup", this.handleMouseUp);
-        LiveUpdates(this.wbId, null, this.handleUpdates, this.handleDelete);
+        LiveUpdates(null, this.handleUpdates);
     }
     componentWillUnmount() {
         document.removeEventListener("mouseup", this.handleMouseUp);

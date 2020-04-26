@@ -6,10 +6,10 @@ import Immutable from 'immutable';
 import UserContext from '../../../providers/UserProvider';
 
 // var whiteboard, coords;
-export const LiveUpdates = (whiteboard, coords = null, addPointFunction, clearFunction) => {
+export const LiveUpdates = (coords = null, addPointFunction, clearFunction) => {
     const SCHOOL_ID = "demo"
-    // const WHITEBOARD_ID = "JAUyNoXA4MK1OjdiCVJN"
-    const WHITEBOARD_ID = whiteboard;
+    const WHITEBOARD_ID = "JAUyNoXA4MK1OjdiCVJN"
+    // const WHITEBOARD_ID = whiteboard;
 
     var query = firebase.firestore().collection("schools").doc(SCHOOL_ID).collection("whiteboards").doc(WHITEBOARD_ID).collection("points");
 
@@ -23,7 +23,7 @@ export const LiveUpdates = (whiteboard, coords = null, addPointFunction, clearFu
                 if (change.type == 'added' || change.type == "modified") {
                     // if ()
                     const data = change.doc.data();
-                    const newCoords = [data.x, data.y, change.doc.id, data.previous];
+                    const newCoords = [data.x, data.y, change.doc.id];
                     addPointFunction(newCoords);
                 } else {
                     //change.type == 'removed'
@@ -48,7 +48,7 @@ export const LiveUpdates = (whiteboard, coords = null, addPointFunction, clearFu
         LiveUpdates();
     } else {
         var rn = Math.floor(1000 + Math.random() * 9000);
-        query.doc((Date.now()).toString() + "_" + rn.toString()).set({ x: coords[0][0], y: coords[0][1], previous: coords[1] });
+        query.doc((Date.now()).toString() + "_" + rn.toString()).set({ x: coords[0], y: coords[1] });
 
         //update data
 
