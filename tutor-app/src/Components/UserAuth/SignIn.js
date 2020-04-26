@@ -46,16 +46,21 @@ class SignInSignOutBtn extends Component {
     }
     render() {
         return (
-            
-                
-                <div className="wrapper">
-                    {this.state.user ?
-                        <button onClick={this.logout}>Logout</button>
-                        :
-                        <button onClick={this.login}>Log In</button>
-                    }
-                </div>
-           
+
+
+            <div className="wrapper">
+                {this.state.user ?
+                    <button onClick={this.logout}>Logout</button>
+                    :
+                    <button onClick={this.login}>Log In</button>
+                }
+                {this.state.user ?
+                    <div><span>{this.state.user.email}</span></div>
+                    :
+                    <div><span>Not logged in</span></div>
+                }
+            </div>
+
         );
     }
 }

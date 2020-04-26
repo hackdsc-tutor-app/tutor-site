@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import { Router, Route, Link } from "react-router-dom";
 import HomePage from "./Components/WhiteBoard/Home/Home";
 import TopBar from "./Components/TopBar/TopBar";
@@ -10,6 +10,8 @@ import 'materialize-css/dist/css/materialize.min.css';
 import SignIn from './Components/UserAuth/SignIn'
 import Card from './Components/timeslots/card'
 import formCall from './Components/WhiteBoard/Agora/formCall'
+import UserProvider from "./providers/UserProvider";
+import CreateTimeslot from "./Components/timeslots/AddTimeslot";
 const history = createHistory();
 
 class App extends Component {
@@ -26,18 +28,22 @@ class App extends Component {
 
   render() {
     return (
+
       <div className="App">
         <Router history={history}>
-         <TopBar />
-         <Route path="/" exact component={HomePage} />
-         <Route path="/SignIn" exact component={SignIn} />
-         {/* <Route path="/ChannelForm" exact component={ChannelForm} /> */}
-         {/* <Route path="/Call" exact component={Call} /> */}
-         <Route path="/Card" exact component={Card} />
-         <Route path="/formCall" exact component={formCall} />
+          <UserProvider>
+            <TopBar />
+            <Route path="/" exact component={HomePage} />
+            <Route path="/SignIn" exact component={SignIn} />
+            <Route path="/AddTimeslot" exact component={CreateTimeslot} />
+            {/* <Route path="/ChannelForm" exact component={ChannelForm} /> */}
+            {/* <Route path="/Call" exact component={Call} /> */}
+            <Route path="/Card" exact component={Card} />
+            <Route path="/formCall" exact component={formCall} />
+          </UserProvider>
+        </Router>
+      </div>
 
-       </Router> 
-       </div>
     );
   }
 }
