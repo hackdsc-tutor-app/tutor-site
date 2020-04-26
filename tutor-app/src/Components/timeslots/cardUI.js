@@ -22,12 +22,10 @@ class Card extends Component {
                     onClick={this.toggleCollapse("basicCollapse")}
                     style={{ marginBottom: "3rem" }}
                 >
-                    <h4 className="card-title">TA's Name</h4>
+                    {this.props.tutorName}
                 </MDBBtn>
                 <MDBCollapse id="basicCollapse" isOpen={this.state.collapseID}>
-                    <p>
-                        Class Name
-                    </p>
+                    <p>{this.props.time}</p>
                     <a href="#" className="btn btn-outline-success">Go to session</a>
                 </MDBCollapse>
             </>
