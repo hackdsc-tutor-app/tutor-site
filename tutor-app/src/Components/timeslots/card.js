@@ -15,7 +15,6 @@ class Cards extends Component {
                 
                 <div className="row">
 
-                
                     <ul>
                     <div className="weekDay">Monday</div>
                     {   elements.map((value, index) => {

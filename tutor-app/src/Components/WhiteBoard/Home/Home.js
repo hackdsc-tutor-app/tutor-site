@@ -11,9 +11,7 @@ import { Stage, Layer } from "react-konva";
 import { addLine } from "../line/line";
 // import { addTextNode } from "../TextNode/TextNode";
 // import Image from "../Image/Image";
-import firebase from '../../../firebase/index'
 import ChannelForm from '../Agora/ChannelForm'
-import Call from '../Agora/Call'
 
 import Konva from 'konva';
 
@@ -371,13 +369,8 @@ function HomePage() {
                 </Col>
                 {/* <Col>
                     <Call />
-<<<<<<< HEAD
                 </Col> */}
             </Row>
-=======
-                </Col>
-            </Row >
->>>>>>> 7566dfca46371edf43734cc55e762c9e9a703ad8
 
         </div >
     );
