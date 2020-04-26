@@ -39,7 +39,8 @@ exports.addTimeslot = functions.https.onCall((data, context) => {
             start_time: start_date
         }
 
-        return firebase.collection("schools").doc("demo").collection("timeslots").add(insertObject).then(() => {
+        return firebase.collection("schools").doc("demo").collection("timeslots").add(insertObject).then((doc) => {
+            console.log(doc)
             return ({ success: true })
         }).catch(err => {
             return ({ error: true, message: err.message })
@@ -53,4 +54,18 @@ exports.addTimeslot = functions.https.onCall((data, context) => {
         return ({ error: true, message: err.message })
     })
 
+})
+
+exports.clearWhiteboard = functions.https.onCall((data, context) => {
+    const firestore = admin.firestore();
+
+    return firestore.collection("schools").doc("demo").collection("whiteboards").doc(data.whiteboard_id).collection("points").get().then(snapshot => {
+        snapshot.docs.forEach(doc => {
+            doc.ref.delete()
+        })
+        return "success"
+    }).catch(err => {
+        console.error(err.message)
+        return { error: err.message };
+    })
 })
