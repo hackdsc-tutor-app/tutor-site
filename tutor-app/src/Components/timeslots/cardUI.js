@@ -17,19 +17,26 @@ class Card extends Component {
             <>
                 <MDBBtn
                     color="danger"
+                    outline
                     onClick={this.toggleCollapse("basicCollapse")}
                     style={{ margin: 0, width: "100%" }}
                 >
                     {this.props.tutorName}
                 </MDBBtn>
                 <MDBCollapse id="basicCollapse" isOpen={this.state.collapseID}>
-                    <p className="timetable">{this.props.time}</p>
+                <MDBBtn
+                        href="#"
+                        color="success"
+                        style={{margin: "5px 0", width: "90%" }}
+                    >
+                        {this.props.time1}
+                    </MDBBtn>
                     <MDBBtn
                         href="#"
                         color="success"
-                        style={{ padding: "5px", margin: "5px 0", width: "90%" }}
+                        style={{margin: "5px 0", width: "90%" }}
                     >
-                        Go to session
+                        {this.props.time2}
                     </MDBBtn>
                 </MDBCollapse>
             </>

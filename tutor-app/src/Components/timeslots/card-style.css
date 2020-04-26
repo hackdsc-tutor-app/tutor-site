@@ -1,9 +1,12 @@
 .container-fluid .row{
     padding-top: 6rem;
 }
+.dayBlock{
+    margin: 5px;
+}
 .dayBlock li {
     position: relative;
-    margin: 10px;
+    margin-bottom: 10px;
     width: 160px;
     background: ghostwhite;
     border-radius: 2px;
