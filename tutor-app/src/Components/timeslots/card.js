@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Card from './cardUI';
+import "./card-style.css";
 
 class Cards extends Component {
     render() {
@@ -16,34 +17,34 @@ class Cards extends Component {
                 <div className="row">
 
                 
-                    <ul>
+                    <ul className="dayBlock">
                     <div className="weekDay">Monday</div>
                     {   elements.map((value, index) => {
                         return <li key={index}><Card tutorName={value[0]} time={value[1]} /></li>
                     })}
                     </ul>
-                    <ul>
+                    <ul className="dayBlock">
                     <div className="weekDay">Tuesday</div>
 
                     {   elements1.map((value, index) => {
                         return <li key={index}><Card tutorName={value[0]} time={value[1]} /></li>
                     })}
                     </ul>
-                    <ul>
+                    <ul className="dayBlock">
                     <div className="weekDay">Wednesday</div>
 
                     {   elements2.map((value, index) => {
                         return <li key={index}><Card tutorName={value[0]} time={value[1]} /></li>
                     })}
                     </ul>
-                    <ul>
+                    <ul className="dayBlock">
                     <div className="weekDay">Thursday</div>
 
                     {   elements3.map((value, index) => {
                         return <li key={index}><Card tutorName={value[0]} time={value[1]} /></li>
                     })}
                     </ul>
-                    <ul>
+                    <ul className="dayBlock">
                     <div className="weekDay">Friday</div>
 
                     {   elements4.map((value, index) => {

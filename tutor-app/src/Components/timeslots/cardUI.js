@@ -1,4 +1,3 @@
-
 import React, { Component } from "react";
 import { MDBBtn, MDBCollapse } from "mdbreact";
 
@@ -16,19 +15,22 @@ class Card extends Component {
     render() {
         return (
             <>
-
                 <MDBBtn
-                    color="primary"
+                    color="danger"
                     onClick={this.toggleCollapse("basicCollapse")}
-                    style={{ marginBottom: "3rem" }}
+                    style={{ margin: 0, width: "100%" }}
                 >
-                    <h4 className="card-title">TA's Name</h4>
+                    {this.props.tutorName}
                 </MDBBtn>
                 <MDBCollapse id="basicCollapse" isOpen={this.state.collapseID}>
-                    <p>
-                        Class Name
-                    </p>
-                    <a href="#" className="btn btn-outline-success">Go to session</a>
+                    <p className="timetable">{this.props.time}</p>
+                    <MDBBtn
+                        href="#"
+                        color="success"
+                        style={{ padding: "5px", margin: "5px 0", width: "90%" }}
+                    >
+                        Go to session
+                    </MDBBtn>
                 </MDBCollapse>
             </>
         );
