@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { withRouter, Link } from "react-router-dom";
 import firebase from '../../../firebase/index';
 import Konva from "konva";
 import Immutable from 'immutable';
+import UserContext from '../../../providers/UserProvider';
 
 export const LiveUpdates = (coords = null, addPointFunction) => {
-    const SCHOOL_ID = "fau"
+    const SCHOOL_ID = "demo"
     const WHITEBOARD_ID = "JAUyNoXA4MK1OjdiCVJN"
 
     var query = firebase.firestore().collection("schools").doc(SCHOOL_ID).collection("whiteboards").doc(WHITEBOARD_ID).collection("points");
@@ -32,6 +33,9 @@ export const LiveUpdates = (coords = null, addPointFunction) => {
 
 
 
+    }
+    function getWhiteboard() {
+        // var 
     }
     if (coords == null) {
         LiveUpdates();

@@ -1,12 +1,18 @@
 
-import React from "react";
+import React, { useContext } from "react";
 import Card from '../../Components/TopBar/TopBar'
+import { UserContext } from "../../providers/UserProvider";
+import firebase from "../../firebase/index";
 
 
-import { withRouter,Link } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 function TopBar({ location }) {
     const { pathname } = location;
+    const signOutUser = () => {
+        firebase.auth().signOut();
+    }
+    var signInBtn = useContext(UserContext) ? <li><Link onClick={signOutUser} to="#">Logout</Link></li> : <li><Link to="/SignIn">Sign In</Link></li>;
     return (
         <nav>
             <div className="nav-wrapper">
@@ -20,15 +26,11 @@ function TopBar({ location }) {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/SignIn">
-                            Sign In
-                        </Link>
-                    </li>
-                    <li>
                         <Link to="/formCall">
                             Form Call
                         </Link>
                     </li>
+                    {signInBtn}
                 </ul>
             </div>
         </nav>
