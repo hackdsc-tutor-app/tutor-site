@@ -16,7 +16,7 @@ class Card extends Component {
         return (
             <>
                 <MDBBtn
-                    color="primary"
+                    color="danger"
                     onClick={this.toggleCollapse("basicCollapse")}
                     style={{ margin: 0, width: "100%" }}
                 >
