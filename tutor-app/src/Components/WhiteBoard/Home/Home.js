@@ -16,6 +16,7 @@ import ChannelForm from '../Agora/ChannelForm'
 import Konva from 'konva';
 
 import Immutable from 'immutable';
+import "./whiteboard.css";
 
 
 class DrawArea extends React.Component {
@@ -72,7 +73,7 @@ class DrawArea extends React.Component {
     handleMouseUp() {
         this.setState({ isDrawing: false });
         // console.log(JSON.stringify(this.state.lines));
-        console.log((this.state.lines));
+        console.log(JSON.stringify(this.state.lines));
     }
     relativeCoordinatesForEvent(mouseEvent) {
         const boundingRect = this.refs.drawArea.getBoundingClientRect();
@@ -91,7 +92,7 @@ class DrawArea extends React.Component {
 }
 const Drawing = function ({ lines }) {
     return (
-        <svg>
+        <svg className="drawing">
             {lines.map((line, index) => (
                 <DrawingLine key={index} line={line} />
             ))}
@@ -99,6 +100,8 @@ const Drawing = function ({ lines }) {
     )
 }
 const DrawingLine = function ({ line }) {
+    console.log(JSON.stringify(line));
+
     const pathData = "M " + line.map(p => {
         return `${p.get('x')} ${p.get('y')}`;
     }).join(" L ");
@@ -233,26 +236,26 @@ function HomePage() {
     //     setShapes(shapes);
     //     forceUpdate();
     // };
-    document.addEventListener("keydown", ev => {
-        if (ev.code == "Delete") {
-            let index = circles.findIndex(c => c.id == selectedId);
-            if (index != -1) {
-                circles.splice(index, 1);
-                setCircles(circles);
-            }
-            index = rectangles.findIndex(r => r.id == selectedId);
-            if (index != -1) {
-                rectangles.splice(index, 1);
-                setRectangles(rectangles);
-            }
-            index = images.findIndex(r => r.id == selectedId);
-            if (index != -1) {
-                images.splice(index, 1);
-                setImages(images);
-            }
-            forceUpdate();
-        }
-    });
+    // document.addEventListener("keydown", ev => {
+    //     if (ev.code == "Delete") {
+    //         let index = circles.findIndex(c => c.id == selectedId);
+    //         if (index != -1) {
+    //             circles.splice(index, 1);
+    //             setCircles(circles);
+    //         }
+    //         index = rectangles.findIndex(r => r.id == selectedId);
+    //         if (index != -1) {
+    //             rectangles.splice(index, 1);
+    //             setRectangles(rectangles);
+    //         }
+    //         index = images.findIndex(r => r.id == selectedId);
+    //         if (index != -1) {
+    //             images.splice(index, 1);
+    //             setImages(images);
+    //         }
+    //         forceUpdate();
+    //     }
+    // });
     function selectChannel(channel) {
         setChannel({ channel });
     };

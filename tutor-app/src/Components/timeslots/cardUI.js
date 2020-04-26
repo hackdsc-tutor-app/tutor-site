@@ -1,49 +1,38 @@
-import React from "react";
-// import './card-style.css';
-import Accordion from 'react-bootstrap/Accordion'
-import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
 
+import React, { Component } from "react";
+import { MDBBtn, MDBCollapse } from "mdbreact";
 
-const CardUI = props => {
-    return (
-        // <div className="card-body tex-dark">
+class Card extends Component {
+    state = {
+        collapseID: ""
+    }
 
-        //     <h4 className="Card-text text-secondary">{props.tutorName}</h4>
-        //     <a href="#" className="btn btn-outline-success btn-tutor-session">{props.time}</a>
+    toggleCollapse = collapseID => () => {
+        this.setState(prevState => ({
+            collapseID: prevState.collapseID !== collapseID ? collapseID : ""
+        }));
+    }
 
-        // </div>
+    render() {
+        return (
+            <>
 
-        <Accordion defaultActiveKey="1"  style={{padding:'10px'}}>
-            <Card>
-                <Card.Header>
-                    <Accordion.Toggle as={Button} variant="link" eventKey="0">
-
-                        <b> {props.tutorName}</b><br/>
-                        <p href="#" >{props.time}</p>
-                    </Accordion.Toggle>
-                </Card.Header>
-                <Accordion.Collapse eventKey="0">
-                    <Card.Body>
-                        hello
-                    </Card.Body>
-                </Accordion.Collapse>
-            </Card>
-        </Accordion>
-    );
-
+                <MDBBtn
+                    color="primary"
+                    onClick={this.toggleCollapse("basicCollapse")}
+                    style={{ marginBottom: "3rem" }}
+                >
+                    <h4 className="card-title">TA's Name</h4>
+                </MDBBtn>
+                <MDBCollapse id="basicCollapse" isOpen={this.state.collapseID}>
+                    <p>
+                        Class Name
+                    </p>
+                    <a href="#" className="btn btn-outline-success">Go to session</a>
+                </MDBCollapse>
+            </>
+        );
+    }
 }
-export default CardUI;
 
-// function Card() {
-//     return (
-//         <React.Fragment>
-//             <div>
-//                 test
-
-//             </div>
-//         </React.Fragment>
-//     );
-// }
-// export default Card;
-//testing
+export default Card;
