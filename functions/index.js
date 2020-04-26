@@ -1,5 +1,6 @@
 const functions = require('firebase-functions');
 const admin = require("firebase-admin");
+admin.initializeApp();
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -8,16 +9,16 @@ const admin = require("firebase-admin");
 //  response.send("Hello from Firebase!");
 // });
 
-exports.addTimeslot = functions.https.onRequest((request, response) => {
+
+exports.addTimeslot = functions.https.onCall((data, context) => {
     const firestore = admin.firestore();
     const auth = admin.auth();
 
-    const body = request.body;
 
-    var tutor_email = body.tutor_email;
+    var tutor_email = data.tutor_email;
     // var student_email = body.student_email;
 
-    auth.getUserByEmail(tutor_email).then(tutor_user => {
+    return auth.getUserByEmail(tutor_email).then(tutor_user => {
         var tutor_uid = tutor_user.uid;
         // auth.getUserByEmail(student_email).then(student_user => {
         //     var student_uid = student_user.uid;
@@ -38,16 +39,18 @@ exports.addTimeslot = functions.https.onRequest((request, response) => {
             start_time: start_date
         }
 
-        firebase.collection("schools").doc("demo").collection("timeslots").add(insertObject).then(() => {
-            response.status(200).send();
+        return firebase.collection("schools").doc("demo").collection("timeslots").add(insertObject).then(() => {
+            return ({ success: true })
         }).catch(err => {
-            response.status(500).send(err.message);
+            return ({ error: true, message: err.message })
         })
 
 
 
 
         // }).catch(err => response.status(500).send(err.message))
-    }).catch(err => response.status(500).send(err.message))
+    }).catch(err => {
+        return ({ error: true, message: err.message })
+    })
 
 })
