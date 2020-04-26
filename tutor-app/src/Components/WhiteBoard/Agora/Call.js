@@ -5,8 +5,6 @@ let client = AgoraRTC.createClient({ mode: "live", codec: "h264" });
 const USER_ID = Math.floor(Math.random() * 1000000001);
 
 export default class Call extends Component {
-  
-
   localStream = AgoraRTC.createStream({
     streamID: USER_ID,
     audio: true,
@@ -15,8 +13,7 @@ export default class Call extends Component {
   });
 
   state = {
-    remoteStreams: [],
-    // channel: ""
+    remoteStreams: []
   };
 
   componentDidMount() {
@@ -86,7 +83,6 @@ export default class Call extends Component {
       }
     );
   };
-  
 
   joinChannel = () => {
     let me = this;
@@ -151,7 +147,7 @@ export default class Call extends Component {
   render() {
     return (
       <div>
-        <div id="agora_local" style={{ width: "200px", height: "200px" }} />
+        <div id="agora_local" style={{ width: "400px", height: "400px" }} />
         {Object.keys(this.state.remoteStreams).map(key => {
           let stream = this.state.remoteStreams[key];
           let streamId = stream.getId();

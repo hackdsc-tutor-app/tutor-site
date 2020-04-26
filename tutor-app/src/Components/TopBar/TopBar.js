@@ -25,14 +25,13 @@ function TopBar({ location }) {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/Card">
-                            Card
+                        <Link to="/formCall">
+                            Form Call
                         </Link>
                     </li>
                 </ul>
             </div>
         </nav>
-
     );
 }
 export default withRouter(TopBar);
