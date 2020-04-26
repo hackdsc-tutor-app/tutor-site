@@ -1,4 +1,10 @@
-# tutor-site
+# Tutor App
+### Developed by German Felipe Sanchez Solano, Benjamin Thaw, Nicolas A. Serna, Jose Baca
+
+
+***If you get rate limited by Firebase, send me a message on Discord @SpaceX#3897 and I'll upgrade the plan. Shouldn't be an issue though.***
+
+
 Tutor-site is a web application that helps tutors to communicate with students that need help explaining real time problems allowing them to have a whiteboard that both can use.
 **this is awesone**
 
