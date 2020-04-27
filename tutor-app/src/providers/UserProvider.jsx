@@ -3,6 +3,7 @@ import { Redirect, Router, Route } from "react-router-dom";
 import firebase from '../firebase/index'
 import SignIn from "../Components/UserAuth/SignIn";
 import TopBar from "../Components/TopBar/TopBar"
+import Container from "../Components/Container";
 
 import Card from "../Components/timeslots/card";
 
@@ -30,18 +31,6 @@ class UserProvider extends Component {
         });
     };
 
-    redirectToSignIn() {
-        console.log('here');
-        // return (
-        //     <Route path="/" component={Card}></Route>
-        // )
-        // this.props.history.push('/SignIn');
-        // this.props.history.push('/SignIn')
-        // return (
-        //     <Redirect from="/" to="/SignIn" />
-        // )
-    }
-
     checkLoggedIn() {
         return firebase.auth().onAuthStateChanged(userAuth => {
             if (userAuth == null) {
@@ -67,28 +56,35 @@ class UserProvider extends Component {
 
         return (
             <UserContext.Provider value={this.state.user}>
-                {/* <span>hi</span> */}
-                {this.state.user &&
-                    this.props.children
-                }
+                <TopBar />
+                <div className="left-align container">
+                    <br />
+                    {/* <span>hi</span> */}
+                    {this.state.user &&
+                        this.props.children
+                    }
 
-                {this.state.loading == true &&
-                    <span>Loading...</span>
-                }
+                    {this.state.loading == true &&
+                        <div>
 
-                {this.state.user == null && this.state.loading == false &&
-                    <div>
-                        <TopBar />
-                        {/* <Redirect from="/" to="/SignIn" />
+                            <span><br />Loading...</span>
+                        </div>
+                    }
+
+                    {this.state.user == null && this.state.loading == false &&
+                        <div>
+                            {/* <Redirect from="/" to="/SignIn" />
                         <Redirect from="/Card" to="/SignIn" /> */}
-                        {/* <Redirect from="/AddTimeslot" to="/SignIn" /> */}
-                        <Route path="/" exact component={SignIn} />
-                        <Route path="/Card" exact component={SignIn} />
-                        <Route path="/AddTimeslot" exact component={SignIn} />
-                        <Route path="/SignIn" exact component={SignIn} />
-                    </div>
+                            {/* <Redirect from="/AddTimeslot" to="/SignIn" /> */}
+                            <Route path="/session/:wbId" exact component={SignIn} />
+                            <Route path="/session" exact component={SignIn} />
+                            <Route path="/card" exact component={SignIn} />
+                            <Route path="/addtimeslot" exact component={SignIn} />
+                            <Route path="/signin" exact component={SignIn} />
+                        </div>
 
-                }
+                    }
+                </div>
             </UserContext.Provider>
         );
     }

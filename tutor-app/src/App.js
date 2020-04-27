@@ -12,6 +12,7 @@ import Card from './Components/timeslots/card'
 import formCall from './Components/WhiteBoard/Agora/formCall'
 import UserProvider from "./providers/UserProvider";
 import CreateTimeslot from "./Components/timeslots/AddTimeslot";
+import MainPage from "./Components/MainPage";
 const history = createHistory();
 
 class App extends Component {
@@ -32,14 +33,15 @@ class App extends Component {
       <div className="App">
         <Router history={history}>
           <UserProvider>
-            <TopBar />
-            <Route path="/:wbId" exact component={HomePage} />
-            <Route path="/SignIn" exact component={SignIn} />
-            <Route path="/AddTimeslot" exact component={CreateTimeslot} />
+
+            <Route path="/session/:wbId" exact component={HomePage} />
+            <Route path="/signin" exact component={SignIn} />
+            <Route path="/addtimeslot" exact component={CreateTimeslot} />
+            <Route path="/" exact component={MainPage} />
             {/* <Route path="/ChannelForm" exact component={ChannelForm} /> */}
             {/* <Route path="/Call" exact component={Call} /> */}
-            <Route path="/Card" exact component={Card} />
-            <Route path="/formCall" exact component={formCall} />
+            <Route path="/card" exact component={Card} />
+            <Route path="/formcall" exact component={formCall} />
           </UserProvider>
         </Router>
       </div>
